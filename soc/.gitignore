@@ -52,7 +52,8 @@
 !**/class.ptf
 !*.tbd
 !*.sof
-!**/hps
+!**/system
+!**/ip
 ## tbd
 
 !*.tcl

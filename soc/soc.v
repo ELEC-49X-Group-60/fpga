@@ -28,37 +28,6 @@ module soc(
 	output		          		HPS_DDR3_RESET_N,
 	input 		          		HPS_DDR3_RZQ,
 	output		          		HPS_DDR3_WE_N,
-	output		          		HPS_ENET_GTX_CLK,
-	inout 		          		HPS_ENET_INT_N,
-	output		          		HPS_ENET_MDC,
-	inout 		          		HPS_ENET_MDIO,
-	input 		          		HPS_ENET_RX_CLK,
-	input 		     [3:0]		HPS_ENET_RX_DATA,
-	input 		          		HPS_ENET_RX_DV,
-	output		     [3:0]		HPS_ENET_TX_DATA,
-	output		          		HPS_ENET_TX_EN,
-	inout 		          		HPS_GSENSOR_INT,
-	inout 		          		HPS_I2C0_SCLK,
-	inout 		          		HPS_I2C0_SDAT,
-	inout 		          		HPS_I2C1_SCLK,
-	inout 		          		HPS_I2C1_SDAT,
-	inout 		          		HPS_KEY,
-	inout 		          		HPS_LED,
-	inout 		          		HPS_LTC_GPIO,
-	output		          		HPS_SD_CLK,
-	inout 		          		HPS_SD_CMD,
-	inout 		     [3:0]		HPS_SD_DATA,
-	output		          		HPS_SPIM_CLK,
-	input 		          		HPS_SPIM_MISO,
-	output		          		HPS_SPIM_MOSI,
-	inout 		          		HPS_SPIM_SS,
-	input 		          		HPS_UART_RX,
-	output		          		HPS_UART_TX,
-	input 		          		HPS_USB_CLKOUT,
-	inout 		     [7:0]		HPS_USB_DATA,
-	input 		          		HPS_USB_DIR,
-	input 		          		HPS_USB_NXT,
-	output		          		HPS_USB_STP,
 
 	//////////// GPIO_0, GPIO connect to GPIO Default //////////
 	inout 		    [35:0]		GPIO
@@ -77,6 +46,25 @@ module soc(
 //  Structural coding
 //=======================================================
 
+	system u0 (
+		.clk_clk                         (FPGA_CLK1_50),                         //                     clk.clk
+		.memory_mem_a                    (HPS_DDR3_ADDR),                    //                  memory.mem_a
+      .memory_mem_ba                   (HPS_DDR3_BA),                   //                        .mem_ba
+      .memory_mem_ck                   (HPS_DDR3_CK_P),                   //                        .mem_ck
+      .memory_mem_ck_n                 (HPS_DDR3_CK_N),                 //                        .mem_ck_n
+      .memory_mem_cke                  (HPS_DDR3_CKE),                  //                        .mem_cke
+      .memory_mem_cs_n                 (HPS_DDR3_CS_N),                 //                        .mem_cs_n
+      .memory_mem_ras_n                (HPS_DDR3_RAS_N),                //                        .mem_ras_n
+      .memory_mem_cas_n                (HPS_DDR3_CAS_N),                //                        .mem_cas_n
+      .memory_mem_we_n                 (HPS_DDR3_WE_N),                 //                        .mem_we_n
+      .memory_mem_reset_n              (HPS_DDR3_RESET_N),              //                        .mem_reset_n
+      .memory_mem_dq                   (HPS_DDR3_DQ),                   //                        .mem_dq
+      .memory_mem_dqs                  (HPS_DDR3_DQS_P),                  //                        .mem_dqs
+      .memory_mem_dqs_n                (HPS_DDR3_DQS_N),                //                        .mem_dqs_n
+      .memory_mem_odt                  (HPS_DDR3_ODT),                  //                        .mem_odt
+      .memory_mem_dm                   (HPS_DDR3_DM),                   //                        .mem_dm
+      .memory_oct_rzqin                (HPS_DDR3_RZQ)                 //                        .oct_rzqin
+    );
 
 
 endmodule

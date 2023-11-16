@@ -6,12 +6,11 @@ set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEBA6U23I7
 set_global_assignment -name TOP_LEVEL_ENTITY "soc"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "16.0.2"
-set_global_assignment -name LAST_QUARTUS_VERSION "16.0.2"
+set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.2 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:01:30 NOVEMBER 15,2023"
 set_global_assignment -name DEVICE_FILTER_PACKAGE UFBGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 672
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 7
-set_global_assignment -name SDC_FILE soc.SDC
 
 #============================================================
 # CLOCK
@@ -227,3 +226,10 @@ set_location_assignment PIN_AA11 -to GPIO[35]
 # End of pin assignments by Terasic System Builder
 #============================================================
 
+
+set_global_assignment -name QIP_FILE system/synthesis/system.qip
+set_global_assignment -name SDC_FILE soc.SDC
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
