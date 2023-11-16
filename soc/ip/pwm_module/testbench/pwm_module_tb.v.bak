@@ -1,0 +1,8 @@
+module pwm_module_tb();
+	
+	reg clk;
+	reg reset_n;
+	reg [7:0] value;
+	wire pulse;
+	
+endmodule

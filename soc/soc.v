@@ -11,7 +11,6 @@ module soc(
 	input 		          		FPGA_CLK3_50,
 
 	//////////// HPS //////////
-	inout 		          		HPS_CONV_USB_N,
 	output		    [14:0]		HPS_DDR3_ADDR,
 	output		     [2:0]		HPS_DDR3_BA,
 	output		          		HPS_DDR3_CAS_N,
@@ -38,7 +37,8 @@ module soc(
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-
+	wire hps_fpga_reset_n;
+	wire [7:0] pwm0_value;
 
 
 
@@ -47,7 +47,10 @@ module soc(
 //=======================================================
 
 	system u0 (
+		// Clock and Reset
 		.clk_clk                         (FPGA_CLK1_50),                         //                     clk.clk
+		.reset_reset_n							(hps_fpga_reset_n),
+		// DDR3
 		.memory_mem_a                    (HPS_DDR3_ADDR),                    //                  memory.mem_a
       .memory_mem_ba                   (HPS_DDR3_BA),                   //                        .mem_ba
       .memory_mem_ck                   (HPS_DDR3_CK_P),                   //                        .mem_ck
@@ -63,8 +66,20 @@ module soc(
       .memory_mem_dqs_n                (HPS_DDR3_DQS_N),                //                        .mem_dqs_n
       .memory_mem_odt                  (HPS_DDR3_ODT),                  //                        .mem_odt
       .memory_mem_dm                   (HPS_DDR3_DM),                   //                        .mem_dm
-      .memory_oct_rzqin                (HPS_DDR3_RZQ)                 //                        .oct_rzqin
+      .memory_oct_rzqin                (HPS_DDR3_RZQ),                 //                        .oct_rzqin
+		
+		.hps_0_h2f_reset_reset_n         (hps_fpga_reset_n),
+		
+		// PWM
+		.pwm_input_0_export					(pwm0_value)
     );
+	 
+	 pwm_module pwm0 (
+		.clk (FPGA_CLK1_50),
+		.reset_n (hps_fpga_reset_n),
+		.value (pwm0_value),
+		.pulse ()
+	);
 
 
 endmodule
