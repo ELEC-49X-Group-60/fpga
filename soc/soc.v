@@ -78,7 +78,7 @@ module soc(
 		.clk (FPGA_CLK1_50),
 		.reset_n (hps_fpga_reset_n),
 		.value (pwm0_value),
-		.pulse ()
+		.pulse (GPIO[0])
 	);
 
 

@@ -17,7 +17,7 @@
 		.memory_mem_odt          (<connected-to-memory_mem_odt>),          //                .mem_odt
 		.memory_mem_dm           (<connected-to-memory_mem_dm>),           //                .mem_dm
 		.memory_oct_rzqin        (<connected-to-memory_oct_rzqin>),        //                .oct_rzqin
-		.reset_reset_n           (<connected-to-reset_reset_n>),           //           reset.reset_n
-		.pwm_input_0_export      (<connected-to-pwm_input_0_export>)       //     pwm_input_0.export
+		.pwm_input_0_export      (<connected-to-pwm_input_0_export>),      //     pwm_input_0.export
+		.reset_reset_n           (<connected-to-reset_reset_n>)            //           reset.reset_n
 	);
 
