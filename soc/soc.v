@@ -39,6 +39,9 @@ module soc(
 //=======================================================
 	wire hps_fpga_reset_n;
 	wire [7:0] pwm0_value;
+	wire [7:0] pwm1_value;
+	wire [7:0] pwm2_value;
+	wire [7:0] pwm3_value;
 
 
 
@@ -71,7 +74,10 @@ module soc(
 		.hps_0_h2f_reset_reset_n         (hps_fpga_reset_n),
 		
 		// PWM
-		.pwm_input_0_export					(pwm0_value)
+		.pwm_input_0_export					(pwm0_value),
+		.pwm_input_1_export					(pwm1_value),
+		.pwm_input_2_export					(pwm2_value),
+		.pwm_input_3_export					(pwm3_value)
     );
 	 
 	 pwm_module pwm0 (
@@ -79,6 +85,27 @@ module soc(
 		.reset_n (hps_fpga_reset_n),
 		.value (pwm0_value),
 		.pulse (GPIO[0])
+	);
+	
+	pwm_module pwm1 (
+		.clk (FPGA_CLK1_50),
+		.reset_n (hps_fpga_reset_n),
+		.value (pwm1_value),
+		.pulse (GPIO[2])
+	);
+	
+	pwm_module pwm2 (
+		.clk (FPGA_CLK1_50),
+		.reset_n (hps_fpga_reset_n),
+		.value (pwm2_value),
+		.pulse (GPIO[4])
+	);
+	
+	pwm_module pwm3 (
+		.clk (FPGA_CLK1_50),
+		.reset_n (hps_fpga_reset_n),
+		.value (pwm3_value),
+		.pulse (GPIO[6])
 	);
 
 

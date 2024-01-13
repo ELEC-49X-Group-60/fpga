@@ -19,7 +19,10 @@ module system (
 	memory_mem_dm,
 	memory_oct_rzqin,
 	pwm_input_0_export,
-	reset_reset_n);	
+	reset_reset_n,
+	pwm_input_1_export,
+	pwm_input_2_export,
+	pwm_input_3_export);	
 
 	input		clk_clk;
 	output		hps_0_h2f_reset_reset_n;
@@ -41,4 +44,7 @@ module system (
 	input		memory_oct_rzqin;
 	output	[7:0]	pwm_input_0_export;
 	input		reset_reset_n;
+	output	[7:0]	pwm_input_1_export;
+	output	[7:0]	pwm_input_2_export;
+	output	[7:0]	pwm_input_3_export;
 endmodule
