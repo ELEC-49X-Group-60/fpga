@@ -42,6 +42,13 @@ module soc(
 	wire [7:0] pwm1_value;
 	wire [7:0] pwm2_value;
 	wire [7:0] pwm3_value;
+	
+	wire pll_clk;
+	wire pll_lock;
+	wire clk_335_hz;  // Not actually a 335Hz clock
+	
+	assign GPIO[8] = clk_335_hz;
+	assign GPIO[10] = pll_clk;
 
 
 
@@ -80,29 +87,43 @@ module soc(
 		.pwm_input_3_export					(pwm3_value)
     );
 	 
+	 pwm_pll pll(
+		.refclk (FPGA_CLK1_50),
+		.rst(~hps_fpga_reset_n),
+		.outclk_0 (pll_clk),
+		.locked (pll_lock)
+	);
+	
+	clock_divider clk_div(
+		.pll_clk (pll_clk),
+		.reset_n (hps_fpga_reset_n),
+		.pll_lock (1'b1),
+		.outclk (clk_335_hz)
+	);
+	 
 	 pwm_module pwm0 (
-		.clk (FPGA_CLK1_50),
+		.clk (clk_335_hz),
 		.reset_n (hps_fpga_reset_n),
 		.value (pwm0_value),
 		.pulse (GPIO[0])
 	);
 	
 	pwm_module pwm1 (
-		.clk (FPGA_CLK1_50),
+		.clk (clk_335_hz),
 		.reset_n (hps_fpga_reset_n),
 		.value (pwm1_value),
 		.pulse (GPIO[2])
 	);
 	
 	pwm_module pwm2 (
-		.clk (FPGA_CLK1_50),
+		.clk (clk_335_hz),
 		.reset_n (hps_fpga_reset_n),
 		.value (pwm2_value),
 		.pulse (GPIO[4])
 	);
 	
 	pwm_module pwm3 (
-		.clk (FPGA_CLK1_50),
+		.clk (clk_335_hz),
 		.reset_n (hps_fpga_reset_n),
 		.value (pwm3_value),
 		.pulse (GPIO[6])
